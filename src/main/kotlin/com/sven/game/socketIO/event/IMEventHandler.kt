@@ -12,7 +12,6 @@ import com.sven.game.socketIO.message.RoomReqMsg
 import com.sven.game.socketIO.message.RoomResMsg
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.statemachine.StateMachine
 import org.springframework.stereotype.Component
 
 @Component
