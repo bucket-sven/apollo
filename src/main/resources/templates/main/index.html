@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Apollo</title>
+    <script src="/js/socket.io.js"></script>
+    <script src="/js/jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="test">Hello World</div>
+    <div id="main">
+        <input type="text" id="userId" value="123456">
+        <input type="text" id="receivedId" value="abcde">
+        <input type="text" id="content" value="CaoNiMa">
+        <button id="submit">提交</button>
+    </div>
+    <script>
+        $(function () {
+            var socket = io("ws://127.0.0.1:8081")
+            socket.on('connect', function () {
+                console.log('connected...')
+            })
+            socket.on("onChatMessage", function (data) {
+                console.log("on message: " + JSON.stringify(data))
+            })
+            socket.on("/test/hehe", function (data) {
+                console.log("on test hehe: " + JSON.stringify(data))
+            })
+
+            function submit() {
+                console.log("CaoNiMa...")
+                var userId = $("#userId").val()
+                var receivedId = $("#receivedId").val()
+                var content= $("#content").val()
+                console.log(userId, receivedId, content)
+                socket.emit("/chat/message", { userId: userId, receivedId: receivedId, msgType: 'msg', content: content })
+            }
+
+            $("#submit").click(function () {
+                submit()
+            })
+        })
+    </script>
+</body>
+</html>
