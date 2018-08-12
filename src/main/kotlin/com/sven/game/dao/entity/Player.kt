@@ -4,7 +4,6 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import javax.persistence.Transient
 
 @Entity(name = "players")
 class Player {
@@ -23,5 +22,6 @@ class Player {
     @Column
     var isSuper: Boolean? = null
 
+    @Volatile
     var status: Int? = null
 }
